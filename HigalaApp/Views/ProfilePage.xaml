@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="HigalaApp.Views.ProfilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Account">
+    <ContentPage.Resources>
+        <!--  Implicit styles  -->
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Padding="20">
+                <Label FontAttributes="Bold" Text="Name" />
+                <Label
+                    x:Name="txtFullName"
+                    HorizontalOptions="Start"
+                    Text="jevonie" />
+                <Label FontAttributes="Bold" Text="Contact No." />
+                <Label
+                    x:Name="txtContactNo"
+                    HorizontalOptions="Start"
+                    Text="Villarin" />
+                <Label FontAttributes="Bold" Text="E-Mail" />
+                <Label
+                    x:Name="txtEmail"
+                    HorizontalOptions="Start"
+                    Text="Villarin" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

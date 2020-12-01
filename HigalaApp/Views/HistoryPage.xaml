@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="HigalaApp.Views.HistoryPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="History">
+    <ContentPage.Resources>
+        <!--  Implicit styles  -->
+        <Style TargetType="{x:Type ListView}">
+            <Setter Property="BackgroundColor" Value="White" />
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout
+                x:Name="layout"
+                Padding="8,10"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                Spacing="10">
+                <ListView
+                    x:Name="listView"
+                    Margin="2"
+                    ItemSelected="OnListViewItemSelected">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="10,10" Orientation="Horizontal">
+                                    <Label FontAttributes="Bold" Text="{Binding establishment_name}" />
+                                    <Label Text="{Binding created_at}" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout
+                x:Name="aiLayout"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="Gray"
+                IsVisible="False"
+                Opacity="0.5">
+                <ActivityIndicator
+                    x:Name="ai"
+                    HorizontalOptions="CenterAndExpand"
+                    IsRunning="False"
+                    VerticalOptions="CenterAndExpand"
+                    Color="Black" />
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

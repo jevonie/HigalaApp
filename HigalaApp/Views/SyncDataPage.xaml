@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="HigalaApp.Views.SyncDataPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout
+                x:Name="mainLayout"
+                Padding="10,0,10,0"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="Gray"
+                Spacing="20">
+                <StackLayout BackgroundColor="White" VerticalOptions="CenterAndExpand">
+                    <StackLayout Padding="10,50,10,50" BackgroundColor="White">
+                        <Label
+                            Padding="10,0,10,0"
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalTextAlignment="Center"
+                            Text="Your data is Outdated Please Update" />
+                        <Button
+                            Margin="50,50,50,1"
+                            BackgroundColor="#0b4d35"
+                            Clicked="OnUpdateClick"
+                            CornerRadius="5"
+                            Text="Update"
+                            TextColor="White" />
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout
+                x:Name="aiLayout"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="Gray"
+                IsVisible="False"
+                Opacity="0.5">
+                <ActivityIndicator
+                    x:Name="ai"
+                    HorizontalOptions="CenterAndExpand"
+                    IsRunning="False"
+                    VerticalOptions="CenterAndExpand"
+                    Color="Black" />
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

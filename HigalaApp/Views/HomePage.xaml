@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="HigalaApp.Views.HomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Higala App">
+    <ContentPage.Content>
+        <ScrollView>
+            <AbsoluteLayout>
+
+                <StackLayout
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    Spacing="20"
+                    VerticalOptions="StartAndExpand">
+                    <StackLayout
+                        Padding="10,20,10,0"
+                        Orientation="Horizontal"
+                        Spacing="10">
+                        <Image
+                            x:Name="HeaderHigalaimg"
+                            HeightRequest="50"
+                            HorizontalOptions="StartAndExpand"
+                            WidthRequest="100" />
+                        <Image
+                            x:Name="HeaderCdoimg"
+                            HeightRequest="50"
+                            HorizontalOptions="EndAndExpand"
+                            WidthRequest="100" />
+                        <Image
+                            x:Name="HeaderGoldenimg"
+                            HeightRequest="50"
+                            HorizontalOptions="EndAndExpand"
+                            WidthRequest="100" />
+                    </StackLayout>
+                    <StackLayout Padding="50,10,50,0" Spacing="10">
+                        <Label
+                            x:Name="Welcome"
+                            Padding="0"
+                            FontAttributes="Bold"
+                            FontSize="22"
+                            HorizontalOptions="Center"
+                            Text="WELCOME HIGALA!"
+                            TextColor="Green" />
+                        <Label
+                            x:Name="lblTitle"
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Jevonie Villarin!"
+                            TextColor="Green"
+                            VerticalOptions="CenterAndExpand" />
+                        <StackLayout
+                            Padding="0,20,0,0"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Vertical"
+                            Spacing="10">
+                            <Button
+                                BackgroundColor="orange"
+                                Clicked="OnScanQRcodeClick"
+                                CornerRadius="5"
+                                Text="Scan QR Code"
+                                TextColor="White" />
+                            <Button
+                                BackgroundColor="LightBlue"
+                                Clicked="OnViewProfileClick"
+                                CornerRadius="5"
+                                Text="View Profile"
+                                TextColor="White" />
+
+                            <Button
+                                BackgroundColor="black"
+                                Clicked="OnMyQrCodeClick"
+                                CornerRadius="5"
+                                Text="My QR Code"
+                                TextColor="White" />
+                            <Button
+                                BackgroundColor="DarkGreen"
+                                Clicked="OnHistpryClick"
+                                CornerRadius="5"
+                                Text="History"
+                                TextColor="White" />
+                            <Button
+                                BackgroundColor="Blue"
+                                Clicked="OnLogoutClick"
+                                CornerRadius="5"
+                                Text="Logout"
+                                TextColor="White" />
+
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+
+            </AbsoluteLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
