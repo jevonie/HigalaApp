@@ -33,7 +33,7 @@ namespace HigalaApp.Views
                 await _dataService.DowloadQuestionHistory();
                 await _dataService.UploadQuestionHistory();
                 await _dataService.UploadAnswers();
-                await Navigation.PopAsync();
+                App.Current.MainPage = new NavigationPage(new HomePage());
             }
             else
             {

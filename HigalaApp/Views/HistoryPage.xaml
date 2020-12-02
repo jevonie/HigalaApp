@@ -3,12 +3,16 @@
     x:Class="HigalaApp.Views.HistoryPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:HigalaApp.Views"
     Title="History">
     <ContentPage.Resources>
         <!--  Implicit styles  -->
         <Style TargetType="{x:Type ListView}">
             <Setter Property="BackgroundColor" Value="White" />
         </Style>
+        <ResourceDictionary>
+            <local:MasterDateConverter x:Key="dateConvert" />
+        </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
         <AbsoluteLayout>
@@ -21,14 +25,18 @@
                 <ListView
                     x:Name="listView"
                     Margin="2"
-                    ItemSelected="OnListViewItemSelected">
-
+                    HasUnevenRows="True"
+                    ItemSelected="OnListViewItemSelected"
+                    SeparatorColor="Green">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Padding="10,10" Orientation="Horizontal">
+                                <StackLayout Padding="10,10" Orientation="Vertical">
                                     <Label FontAttributes="Bold" Text="{Binding establishment_name}" />
-                                    <Label Text="{Binding created_at}" />
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding answer_date, StringFormat='{0:MMMM dd, yyyy}'}" />
+                                        <Label Text="{Binding answer_time, StringFormat='{0:h:mm tt}'}" />
+                                    </StackLayout>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

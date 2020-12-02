@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace HigalaApp.Views
             InitializeComponent();
 
             _restService = new RestService();
+
         }
         protected override async void OnAppearing()
         {
@@ -38,5 +40,23 @@ namespace HigalaApp.Views
             }
         }
       
+    }
+    public class MasterDateConverter : IValueConverter
+    {
+        public object Convert(Object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+                return string.Empty;
+
+            var datetime = (DateTime)value;
+            datetime.ToString("MMMM dd, yyyy");
+            return value;
+        }
+
+        public object ConvertBack(Object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

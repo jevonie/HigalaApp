@@ -25,7 +25,7 @@
                         <Image
                             x:Name="HeaderCdoimg"
                             HeightRequest="50"
-                            HorizontalOptions="EndAndExpand"
+                            HorizontalOptions="CenterAndExpand"
                             WidthRequest="100" />
                         <Image
                             x:Name="HeaderGoldenimg"
@@ -56,34 +56,39 @@
                             Orientation="Vertical"
                             Spacing="10">
                             <Button
-                                BackgroundColor="orange"
+                                BackgroundColor="#ed9c28"
                                 Clicked="OnScanQRcodeClick"
                                 CornerRadius="5"
+                                FontAttributes="Bold"
                                 Text="Scan QR Code"
                                 TextColor="White" />
                             <Button
-                                BackgroundColor="LightBlue"
+                                BackgroundColor="#5bc0de"
                                 Clicked="OnViewProfileClick"
                                 CornerRadius="5"
+                                FontAttributes="Bold"
                                 Text="View Profile"
                                 TextColor="White" />
 
                             <Button
-                                BackgroundColor="black"
+                                BackgroundColor="#000"
                                 Clicked="OnMyQrCodeClick"
                                 CornerRadius="5"
+                                FontAttributes="Bold"
                                 Text="My QR Code"
                                 TextColor="White" />
                             <Button
-                                BackgroundColor="DarkGreen"
+                                BackgroundColor="#0b4d35"
                                 Clicked="OnHistpryClick"
                                 CornerRadius="5"
+                                FontAttributes="Bold"
                                 Text="History"
                                 TextColor="White" />
                             <Button
-                                BackgroundColor="Blue"
+                                BackgroundColor="#d2322d"
                                 Clicked="OnLogoutClick"
                                 CornerRadius="5"
+                                FontAttributes="Bold"
                                 Text="Logout"
                                 TextColor="White" />
 

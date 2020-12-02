@@ -30,7 +30,6 @@ namespace HigalaApp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
           
         }
 

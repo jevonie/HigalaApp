@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "apNLt4yp+6Y+/ULk6CgxAjYTeikNH4c12i1yXbEjj9YVYbMOZ6jOqGl4x/UuZcnVRSHpwkiWquxNRQn9CHkPHQ==",
+  "dgSpecHash": "RFaZLXULu7IWseHQD0PzF/IdJYtbJBFBO5PBDCsKDqNDAFjJ+PQHLowIZd84f9Hp1+M9jDI6ZgTf6ZLEp75A0w==",
   "success": true,
   "projectFilePath": "E:\\Mobile Projects\\HigalaApp\\HigalaApp\\HigalaApp.csproj",
   "expectedPackageFiles": [
@@ -18,7 +18,7 @@
     "C:\\Users\\asus\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.5.3.2\\xamarin.essentials.1.5.3.2.nupkg.sha512",
-    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\4.6.0.1141\\xamarin.forms.4.6.0.1141.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\xamarin.forms\\4.6.0.1141\\xamarin.forms.4.6.0.1141.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\zxing.net.mobile\\2.4.1\\zxing.net.mobile.2.4.1.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\zxing.net.mobile.forms\\2.4.1\\zxing.net.mobile.forms.2.4.1.nupkg.sha512"
   ],

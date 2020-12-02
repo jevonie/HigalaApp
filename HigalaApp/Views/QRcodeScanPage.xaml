@@ -17,10 +17,10 @@
                     <zxing:ZXingScannerView
                         x:Name="scanView"
                         HeightRequest="400"
-                        HorizontalOptions="CenterAndExpand"
+                        HorizontalOptions="Fill"
                         IsScanning="True"
                         OnScanResult="OnScanResult"
-                        VerticalOptions="CenterAndExpand"
+                        VerticalOptions="Fill"
                         WidthRequest="300" />
                     <zxing:ZXingDefaultOverlay TopText="Align the QRCode within the frame" />
                 </Grid>

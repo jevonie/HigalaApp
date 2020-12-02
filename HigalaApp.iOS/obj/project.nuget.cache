@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "RvPwrWbg98A62HH+hzZFreC2PYMuaRB0lUmZ1g5wE+hSud2YAaZfMJjuOOsVGudG/LgXavWzMo0UTtvkYPbrRw==",
+  "dgSpecHash": "FINFNsIEUQPSZXg085CeSBGnGQnNTxCORKYCE5YHm4is+UGzlrja0o0S884hq+LRpLrtFU08/9tkZTzO1WxjxQ==",
   "success": true,
   "projectFilePath": "E:\\Mobile Projects\\HigalaApp\\HigalaApp.iOS\\HigalaApp.iOS.csproj",
   "expectedPackageFiles": [
@@ -14,7 +14,7 @@
     "C:\\Users\\asus\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.5.3.2\\xamarin.essentials.1.5.3.2.nupkg.sha512",
-    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\4.6.0.1141\\xamarin.forms.4.6.0.1141.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\xamarin.forms\\4.6.0.1141\\xamarin.forms.4.6.0.1141.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\zxing.net.mobile\\2.4.1\\zxing.net.mobile.2.4.1.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\zxing.net.mobile.forms\\2.4.1\\zxing.net.mobile.forms.2.4.1.nupkg.sha512"
   ],

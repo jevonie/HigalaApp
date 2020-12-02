@@ -25,7 +25,7 @@ namespace HigalaApp.Views
         }
         private void OnScanResult(ZXing.Result result)
         {
-          
+
             Device.BeginInvokeOnMainThread(async () =>
             {
                 if (_isScanning)
@@ -36,176 +36,98 @@ namespace HigalaApp.Views
                     aiLayout.IsVisible = true;
 
                     Debug.WriteLine("\tTIBONG {0}", "Start Scanning");
-                    var establisment = await App.Database.GetEstablismentAsync(result.Text);
-                    if (establisment != null)
+
+                    EstablishmentOnline establishment = await App.Database.GetEstablismentAsync(result.Text);
+
+                    if (establishment != null)
                     {
-                        Debug.WriteLine("\tTIBONG {0}", "Enter Establishment");
-                        var question = new QuestionFormOnline();
-
-                        //create random string
-                        question.question_form_id = DateTime.Now.ToString("MMddyyyymmhhss") + Guid.NewGuid().ToString().Replace("-", "").ToUpper();
-                        question.establishment_id = establisment.establishment_id;
-                        question.establishment_name = establisment.establishment_name;
-                        question.customer_id = App.UserID;
-                        question.customer_name = App.CustomerName;
-                        question.answer_date = DateTime.Now.Date.ToString("yyyy-MM-dd");
-                        question.answer_time = DateTime.Now.ToString("hh:mm:ss");
-                        question.created_at = DateTime.Now;
-                        question.entity = establisment.has_questions;
-                        question.is_sync = 0;
-
-                        Debug.WriteLine("\tTIBONG {0}", "Done Setting");
-                        await App.Database.SaveScannedItemsAsync(question);
-                        
-                        if (establisment.has_questions != "1")
-                        {
-                            var detailPage = new HistoryDetailsPage();
-                            detailPage.Disappearing += (sender2, e2) =>
-                            {
-                                _isScanning = true;
-
-                            };
-                            detailPage.BindingContext = question;
-                            aiLayout.IsVisible = false;
-                            ai.IsRunning = false;
-                            await Navigation.PushModalAsync(detailPage);
-                        }
-                        else
-                        {
-                            List<QuestionsReferenceOnline> questionsitems = await App.Database.GetQuestionsAllReferenceAsync();
-                            foreach(QuestionsReferenceOnline reference in questionsitems)
-                            {   
-                                var answermodel = new QuestionsAnswerOnline();
-                                answermodel.question_id = reference.question_id;
-                                answermodel.type_answer = reference.type_answer;
-                                answermodel.question = reference.question;
-                                answermodel.question_form_id = question.question_form_id;
-                                var item = await App.Database.SaveQuestionsAnswerAsync(answermodel);
-                            }
-
-                            List<QuestionsAnswerOnline> questionlist= await App.Database.GetQuestionsAnswerAsync(question.question_form_id);
-
-                            var questionPage = new QuestionPage();
-                            questionPage.BindingContext = questionlist;
-
-                            Debug.WriteLine("\tJOINITEMS {0}", questionsitems);
-                            questionPage.Disappearing += (sender2, e2) =>
-                            {
-                                _isScanning = true;
-                            };
-                            aiLayout.IsVisible = false;
-                            ai.IsRunning = false;
-                            await Navigation.PushAsync(questionPage);
-                        }
+                        Debug.WriteLine("\tTIBONG {0}", "Using Pure Equals Establishment search");
+                        OpenScanDetails(establishment);
                     }
                     else
                     {
-                        var current = Connectivity.NetworkAccess;
-                        if (current == NetworkAccess.Internet)
+
+                        List<EstablishmentOnline> establishmentlist = await App.Database.GetEstablismentSearchAsync(result.Text);
+                        if (establishmentlist != null)
                         {
-                            Debug.WriteLine("\tTIBONG {0}", "Looking to remote");
-
-                            EstablishmentOnline remoteEstablishment = await _restService.GetEstablishmentAsync(ConstantData.HigalaApi + "getestablishment/" + result.Text);
-                            if (remoteEstablishment != null)
+                            foreach (EstablishmentOnline establishmentitem in establishmentlist)
                             {
-                                Debug.WriteLine("\tTIBONG {0}", "Enter in remote");
-                                EstablishmentOnline localEstablishment = await App.Database.GetEstablismentAsync(result.Text);
-                                if (localEstablishment != null)
-                                {
-                                    Debug.WriteLine("\tTIBONG {0}", "Update");
-                                    remoteEstablishment.ID = localEstablishment.ID;
-                                    await App.Database.SaveEstablishmentAsync(remoteEstablishment);
-                                }
-                                else
-                                {
-                                    Debug.WriteLine("\tTIBONG {0}", "Insert");
-                                    await App.Database.SaveEstablishmentAsync(remoteEstablishment);
-                                }
-                                DateTime dateTime = DateTime.UtcNow.Date;
-                                Debug.WriteLine("\tTIBONG {0}", "save remote");
-
-                                var question = new QuestionFormOnline();
-                                question.question_form_id = DateTime.Now.ToString("MMddyyyymmhhss") + Guid.NewGuid().ToString().Replace("-", "").ToUpper();
-                                question.establishment_id = remoteEstablishment.establishment_id;
-                                question.establishment_name = remoteEstablishment.establishment_name;
-                                question.customer_id = App.UserID;
-                                question.customer_name = App.CustomerName;
-                                question.answer_date = DateTime.Now.Date.ToString("yyyy-MM-dd");
-                                question.answer_time = DateTime.Now.ToString("hh:mm:ss");
-                                question.created_at = DateTime.Now;
-                                question.entity = remoteEstablishment.has_questions;
-                                question.is_sync = 0;
-
-                                if (remoteEstablishment.has_questions != "1")
-                                {
-                                    var detailPage = new HistoryDetailsPage();
-                                    detailPage.Disappearing += (sender2, e2) =>
-                                    {
-                                        _isScanning = true;
-                                    };
-                                    detailPage.BindingContext = question;
-
-                                    aiLayout.IsVisible = false;
-                                    ai.IsRunning = false;
-                                    await Navigation.PushModalAsync(detailPage);
-                                }
-                                else
-                                {
-                                    List<QuestionsReferenceOnline> questionsitems = await App.Database.GetQuestionsAllReferenceAsync();
-                                    foreach (QuestionsReferenceOnline reference in questionsitems)
-                                    {
-                                        var answermodel = new QuestionsAnswerOnline();
-                                        answermodel.question_id = reference.question_id;
-                                        answermodel.type_answer = reference.type_answer;
-                                        answermodel.question = reference.question;
-                                        answermodel.question_form_id = question.question_form_id;
-                                        var item = await App.Database.SaveQuestionsAnswerAsync(answermodel);
-                                    }
-
-                                    List<QuestionsAnswerOnline> questionlist = await App.Database.GetQuestionsAnswerAsync(question.question_form_id);
-
-                                    var questionPage = new QuestionPage();
-                                    questionPage.BindingContext = questionlist;
-
-                                    Debug.WriteLine("\tJOINITEMS {0}", questionsitems);
-                                    questionPage.Disappearing += (sender2, e2) =>
-                                    {
-                                        _isScanning = true;
-                                    };
-
-                                    aiLayout.IsVisible = false;
-                                    ai.IsRunning = false;
-                                    await Navigation.PushAsync(questionPage);
-                                }
-
-                            }
-                            else
-                            {
-                                bool answer = await DisplayAlert("Establishment not found!", "Scan Again?", "OK", "Cancel");
-                                if (answer)
-                                {
-                                    _isScanning = true;
-                                    aiLayout.IsVisible = false;
-                                    ai.IsRunning = false;
-                                }
-                                else
-                                {
-                                    await Navigation.PopAsync();
-                                }
-
+                                Debug.WriteLine("\tTIBONG {0}", "Using Simple Like Equals Establishment search");
+                                OpenScanDetails(establishmentitem);
                             }
                         }
                         else
                         {
-                            await DisplayAlert("Establishment not found!", "Try Opening youre internet connection for updates.", "OK");
+                            await DisplayAlert("Establishment not found!", "Try open youre internet connection and Logout then login.", "OK");
                             _isScanning = true;
                         }
-                        
+
                     }
 
-                    
+
                 }
             });
+        }
+        private async void OpenScanDetails(EstablishmentOnline establishment)
+        {
+            Debug.WriteLine("\tTIBONG {0}", "Enter Establishment");
+            var question = new QuestionFormOnline();
+
+            //create random string
+            question.question_form_id = DateTime.Now.ToString("MMddyyyymmhhss") + Guid.NewGuid().ToString().Replace("-", "").ToUpper();
+            question.establishment_id = establishment.establishment_id;
+            question.establishment_name = establishment.establishment_name;
+            question.customer_id = App.UserID;
+            question.customer_name = App.CustomerName;
+            question.answer_date = DateTime.Now.Date.ToString("yyyy-MM-dd");
+            question.answer_time = DateTime.Now.ToString("HH:mm:ss");
+            question.created_at = DateTime.Now;
+            question.entity = establishment.has_questions;
+            question.is_sync = 0;
+
+            Debug.WriteLine("\tTIBONG {0}", "Done Setting");
+            await App.Database.SaveScannedItemsAsync(question);
+
+            if (establishment.has_questions != "1")
+            {
+                var detailPage = new HistoryDetailsPage();
+                detailPage.Disappearing += (sender2, e2) =>
+                {
+                    _isScanning = true;
+
+                };
+                detailPage.BindingContext = question;
+                aiLayout.IsVisible = false;
+                ai.IsRunning = false;
+                await Navigation.PushModalAsync(detailPage);
+            }
+            else
+            {
+                List<QuestionsReferenceOnline> questionsitems = await App.Database.GetQuestionsAllReferenceAsync();
+                foreach (QuestionsReferenceOnline reference in questionsitems)
+                {
+                    var answermodel = new QuestionsAnswerOnline();
+                    answermodel.question_id = reference.question_id;
+                    answermodel.type_answer = reference.type_answer;
+                    answermodel.question = reference.question;
+                    answermodel.question_form_id = question.question_form_id;
+                    var item = await App.Database.SaveQuestionsAnswerAsync(answermodel);
+                }
+
+                List<QuestionsAnswerOnline> questionlist = await App.Database.GetQuestionsAnswerAsync(question.question_form_id);
+
+                var questionPage = new QuestionPage();
+                questionPage.BindingContext = questionlist;
+
+                Debug.WriteLine("\tJOINITEMS {0}", questionsitems);
+                questionPage.Disappearing += (sender2, e2) =>
+                {
+                    _isScanning = true;
+                };
+                aiLayout.IsVisible = false;
+                ai.IsRunning = false;
+                await Navigation.PushAsync(questionPage);
+            }
         }
     }
 }

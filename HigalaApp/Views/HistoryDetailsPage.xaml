@@ -22,6 +22,7 @@
                 <Label
                     FontAttributes="Bold"
                     FontSize="20"
+                    HorizontalTextAlignment="Center"
                     Text="{Binding establishment_name}" />
             </StackLayout>
             <StackLayout

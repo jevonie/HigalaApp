@@ -125,7 +125,12 @@ namespace HigalaApp.Data
                             .Where(x => x.customer_username == username)
                             .FirstOrDefaultAsync();
         }
-
+        public Task<ClientLoginOnline> GetUserByCustomerIDAsync(string customer_id)
+        {
+            return _database.Table<ClientLoginOnline>()
+                            .Where(x => x.customer_id == customer_id)
+                            .FirstOrDefaultAsync();
+        }
         // QUESTIONS FORMS //
 
         public Task<List<QuestionFormOnline>> GetQuestionsAsync(string customerid)
@@ -184,9 +189,15 @@ namespace HigalaApp.Data
         {
 
             return _database.Table<EstablishmentOnline>()
-                            .Where(i => i.QrCombination == result)
+                            .Where(i => i.QrCombination ==  result)
                             .FirstOrDefaultAsync();
         }
+
+        public Task<List<EstablishmentOnline>> GetEstablismentSearchAsync(string result)
+        {
+            return  _database.QueryAsync<EstablishmentOnline>($"SELECT * FROM  EstablishmentOnline WHERE QrCombination LIKE '%{ result }%' LIMIT 1");
+        }
+        
         public Task<EstablishmentOnline> GetEstablismentByIDAsync(string establishment_id)
         {
             return _database.Table<EstablishmentOnline>()

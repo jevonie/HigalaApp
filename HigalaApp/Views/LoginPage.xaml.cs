@@ -50,6 +50,7 @@ namespace HigalaApp.Views
                 aiLayout.IsVisible = true;
                 var utility = new UtilityProvider();
                 ClientLoginOnline Locallogin = await App.Database.ClientLoginAsync(username_Input.Trim());
+                Debug.WriteLine("\tLOCAL LOGIN USER {0}", username_Input.Trim());
                 Debug.WriteLine("\tLOCAL LOGIN {0}", Locallogin);
                 if (Locallogin != null)
                 {
@@ -61,11 +62,15 @@ namespace HigalaApp.Views
                         ClientLoginOnline login = await _restService.GetClientDataAsync(GenerateRequestUri(ConstantData.HigalaApi + "logincustomer", username_Input.Trim(), password_Input.Trim()));
                         if (login != null)
                         {
-                            var loginuser = new ClientLoginOnline();
-                            loginuser.ID = Locallogin.ID;
-                            loginuser.Passwords = utility.getEncodeString(password_Input.Trim());
-                            Debug.WriteLine("\tTIBONG {0}", "Update local login");
-                            await App.Database.SaveClientLoginAsync(loginuser);
+                            ClientLoginOnline loginuser = await App.Database.GetUserByCustomerIDAsync(login.customer_id);
+                            if (loginuser != null)
+                            {
+                                loginuser.customer_username = username_Input.Trim();
+                                loginuser.Passwords = utility.getEncodeString(password_Input.Trim());
+                                loginuser.is_active = "1";
+                                Debug.WriteLine("\tINFO {0}", "Update local login" + await App.Database.SaveClientLoginAsync(loginuser));
+                            }
+
                             CustomerDataOnline customerOnline = await _restService.GetClientDataDetailsAsync(ConstantData.HigalaApi + "getcustomer/" + login.customer_id);
                             if (customerOnline != null)
                             {
@@ -95,11 +100,7 @@ namespace HigalaApp.Views
                             App.CustomerName = userDetails.customer_firstname + " " + userDetails.customer_lastname;
                             App.QrCode = userDetails.QrCombination;
                             Debug.WriteLine("\tQR_CODE {0}", userDetails.QrCombination);
-                            await _dataService.DowloadEstablishments();
-                            await _dataService.DowloadQuestionHistory();
-                            App.Current.MainPage = new NavigationPage(new HomePage());
-                            aiLayout.IsVisible = false;
-                            ai.IsRunning = false;
+                            CheckLocalData();
                         }
                         else
                         {
@@ -127,16 +128,25 @@ namespace HigalaApp.Views
                         ClientLoginOnline login = await _restService.GetClientDataAsync(GenerateRequestUri(ConstantData.HigalaApi + "logincustomer", username_Input.Trim(), password_Input.Trim()));
                         if (login != null)
                         {
-                            var user = new ClientLoginOnline();
-
-                            Debug.WriteLine("\tINFOR {0}", "login using remote");
-                            user.customer_id = login.customer_id;
-                            user.customer_username = username_Input.Trim();
-                            user.Passwords = utility.getEncodeString(password_Input.Trim());
-                            user.is_active = "1";
                             
-                            Debug.WriteLine("\tINFO {0}", "update login local"+ await App.Database.SaveClientLoginAsync(user));
-                           
+                            Debug.WriteLine("\tINFOR {0}", "login using remote");
+                            ClientLoginOnline loginuser = await App.Database.GetUserByCustomerIDAsync(login.customer_id);
+                            if(loginuser != null)
+                            {
+                                loginuser.customer_username = username_Input.Trim();
+                                loginuser.Passwords = utility.getEncodeString(password_Input.Trim());
+                                loginuser.is_active = "1";
+                                Debug.WriteLine("\tINFO {0}", "update login local" + await App.Database.SaveClientLoginAsync(loginuser));
+                            }
+                            else
+                            {
+                                ClientLoginOnline user = new ClientLoginOnline();
+                                user.customer_id = login.customer_id;
+                                user.customer_username = username_Input.Trim();
+                                user.Passwords = utility.getEncodeString(password_Input.Trim());
+                                user.is_active = "1";
+                                Debug.WriteLine("\tINFO {0}", "insert login local" + await App.Database.SaveClientLoginAsync(user));
+                            }
 
                             CustomerDataOnline customerdata = await _restService.GetClientDataDetailsAsync(ConstantData.HigalaApi + "getcustomer/" + login.customer_id);
                             if (customerdata != null)
@@ -157,11 +167,7 @@ namespace HigalaApp.Views
                                 App.UserID = customerdata.customer_id;
                                 App.CustomerName = customerdata.customer_firstname + " " + customerdata.customer_lastname;
                                 App.QrCode = customerdata.QrCombination;
-                                await _dataService.DowloadEstablishments();
-                                await _dataService.DowloadQuestionHistory();
-                                App.Current.MainPage = new NavigationPage(new HomePage());
-                                aiLayout.IsVisible = false;
-                                ai.IsRunning = false;
+                                CheckLocalData();
                             }
                             else
                             {
@@ -192,6 +198,34 @@ namespace HigalaApp.Views
             requestUri += $"?account={username}";
             requestUri += $"&password={password}"; // or units=metric
             return requestUri;
+        }
+        public async void CheckLocalData()
+        {
+            List<QuestionFormOnline> questionsHistory = await App.Database.GetQuestionsNotSyncAsync();
+            if (questionsHistory.Count > 0)
+            {
+                Application.Current.MainPage = new SyncDataPage();
+            }
+            else
+            {
+                updateEstalishment();
+            }
+
+        }
+        public  async void updateEstalishment()
+        {
+            var current = Connectivity.NetworkAccess;
+            if (current == NetworkAccess.Internet)
+            {
+                Debug.WriteLine("\tTIBONG {0}", "Start Update Local Establishents!!");
+                await _dataService.SyncQuestions();
+                await _dataService.DowloadEstablishments();
+                await _dataService.DowloadQuestionHistory(); 
+            }
+
+            App.Current.MainPage = new NavigationPage(new HomePage());
+            aiLayout.IsVisible = false;
+            ai.IsRunning = false;
         }
 
     }

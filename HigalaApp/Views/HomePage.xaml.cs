@@ -20,7 +20,6 @@ namespace HigalaApp.Views
         public HomePage()
         {
             InitializeComponent();
-            CheckLocalData();
             BackgroundImageSource = ImageSource.FromResource("HigalaApp.Views.Image.background.jpg");
             HeaderHigalaimg.Source = ImageSource.FromResource("HigalaApp.Views.Image.higala.png");
             HeaderCdoimg.Source = ImageSource.FromResource("HigalaApp.Views.Image.cdo.png");
@@ -33,23 +32,8 @@ namespace HigalaApp.Views
         {
             base.OnAppearing();
             lblTitle.Text = App.CustomerName.ToUpper();
-            var current = Connectivity.NetworkAccess;
-            if (current == NetworkAccess.Internet)
-            {
-                await _dataService.SyncQuestions();
-
-            }
         }
 
-        public async void CheckLocalData()
-        {
-            List<QuestionFormOnline> questionsHistory = await App.Database.GetQuestionsNotSyncAsync();
-           if(questionsHistory.Count > 0)
-            {   
-                await Navigation.PushAsync(new SyncDataPage());
-            }
-            
-        }
         public void OnLogoutClick(object sender, EventArgs e)
         {
             App.UserID = "";
