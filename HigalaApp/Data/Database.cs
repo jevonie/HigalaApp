@@ -155,6 +155,13 @@ namespace HigalaApp.Data
                             .ToListAsync();
         }
 
+        public Task<QuestionFormOnline> GetQuestionsFormByIDAsync(int id)
+        {
+            return _database.Table<QuestionFormOnline>()
+                            .Where(i => i.ID == id)
+                            .FirstOrDefaultAsync();
+        }
+
         public Task<int> SaveScannedItemsAsync(QuestionFormOnline question)
         {
 

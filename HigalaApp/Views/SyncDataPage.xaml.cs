@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,13 +27,21 @@ namespace HigalaApp.Views
             aiLayout.IsVisible = true;
             var current = Connectivity.NetworkAccess;
             if (current == NetworkAccess.Internet)
-            {   
+            {
                 _dataService = new DataServices();
-                await _dataService.SyncQuestions();
-                await _dataService.DowloadEstablishments();
-                await _dataService.DowloadQuestionHistory();
-                await _dataService.UploadQuestionHistory();
-                await _dataService.UploadAnswers();
+
+                try
+                {
+                    await _dataService.SyncQuestions();
+                    await _dataService.DowloadQuestionHistory();
+                    await _dataService.UploadQuestionHistory();
+                    await _dataService.UploadAnswers();
+                    await _dataService.DowloadEstablishments();
+                }
+                catch(Exception ex)
+                {
+                    Debug.WriteLine("\t"+ ex, "ERROR ON SYNCHING DATA!!!");
+                }
                 App.Current.MainPage = new NavigationPage(new HomePage());
             }
             else

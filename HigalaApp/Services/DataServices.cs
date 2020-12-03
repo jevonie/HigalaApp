@@ -1,8 +1,10 @@
 ﻿using HigalaApp.Data;
 using HigalaApp.Models;
 using HigalaApp.Utility;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Threading.Tasks;
 namespace HigalaApp.Services
 {
@@ -136,12 +138,14 @@ namespace HigalaApp.Services
                             qrhistoryitem.ID = questionlocal.ID;
                             qrhistoryitem.establishment_name = establisment.establishment_name;
                             qrhistoryitem.is_sync = 1;
+                            qrhistoryitem.history_date = DateTime.Parse(qrhistoryitem.answer_date + " " + qrhistoryitem.answer_time);
                             Debug.WriteLine("\tLOCAL UPDATE START {0}", await App.Database.SaveScannedItemsAsync(qrhistoryitem));
                         }
                         else
                         {
                             qrhistoryitem.establishment_name = establisment.establishment_name;
                             qrhistoryitem.is_sync = 1;
+                            qrhistoryitem.history_date = DateTime.Parse(qrhistoryitem.answer_date + " " + qrhistoryitem.answer_time);
                             await App.Database.SaveScannedItemsAsync(qrhistoryitem);
                             Debug.WriteLine("\tLOCAL INSERT START  {0}", "INSERT Local Questions");
                         }

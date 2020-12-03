@@ -432,6 +432,12 @@ namespace HigalaApp.Views
                     await App.Database.SaveQuestionsAnswerAsync(item);
                     Debug.WriteLine("ID:" + item.ID + "| " + item.question_answer + " --> " + item.question_text, "QUESTION ANSWER");
                 }
+
+                QuestionFormOnline questionform = await App.Database.GetQuestionsFormByIDAsync(App.FormID);
+                var detailPage = new HistoryDetailsPage();
+                detailPage.BindingContext = questionform;
+
+                await Navigation.PushModalAsync(detailPage);
                 await Navigation.PopAsync();
             }
         }

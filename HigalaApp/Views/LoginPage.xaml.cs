@@ -217,10 +217,16 @@ namespace HigalaApp.Views
             var current = Connectivity.NetworkAccess;
             if (current == NetworkAccess.Internet)
             {
-                Debug.WriteLine("\tTIBONG {0}", "Start Update Local Establishents!!");
-                await _dataService.SyncQuestions();
-                await _dataService.DowloadEstablishments();
-                await _dataService.DowloadQuestionHistory(); 
+                try
+                {
+                    Debug.WriteLine("\tTIBONG {0}", "Start Update Local Establishents!!");
+                    await _dataService.SyncQuestions();
+                    await _dataService.DowloadEstablishments();
+                    await _dataService.DowloadQuestionHistory();
+                }catch(Exception ex)
+                {
+                    Debug.WriteLine("\t" + ex, "Error on Synching Login items!!");
+                }
             }
 
             App.Current.MainPage = new NavigationPage(new HomePage());

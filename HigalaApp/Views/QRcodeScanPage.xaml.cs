@@ -82,11 +82,13 @@ namespace HigalaApp.Views
             question.answer_date = DateTime.Now.Date.ToString("yyyy-MM-dd");
             question.answer_time = DateTime.Now.ToString("HH:mm:ss");
             question.created_at = DateTime.Now;
+            question.history_date = DateTime.Now;
             question.entity = establishment.has_questions;
             question.is_sync = 0;
-
+           
             Debug.WriteLine("\tTIBONG {0}", "Done Setting");
             await App.Database.SaveScannedItemsAsync(question);
+            App.FormID = question.ID;
 
             if (establishment.has_questions != "1")
             {
@@ -112,6 +114,7 @@ namespace HigalaApp.Views
                     answermodel.question = reference.question;
                     answermodel.question_form_id = question.question_form_id;
                     var item = await App.Database.SaveQuestionsAnswerAsync(answermodel);
+                   
                 }
 
                 List<QuestionsAnswerOnline> questionlist = await App.Database.GetQuestionsAnswerAsync(question.question_form_id);

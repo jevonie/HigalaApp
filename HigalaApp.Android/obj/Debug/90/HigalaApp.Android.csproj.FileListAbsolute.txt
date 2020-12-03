@@ -177,8 +177,6 @@ E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\assets\zxing
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\assets\ZXingNetMobile.dll
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\typemaps.arm64-v8a.s
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\typemaps.armeabi-v7a.s
-E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\typemaps.x86.s
-E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\typemaps.x86_64.s
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\typemaps.armeabi-v7a-shared.inc
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\typemaps.shared.inc
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\AndroidManifest.xml
@@ -190,8 +188,6 @@ E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\static.flag
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\buildid.txt
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\environment.arm64-v8a.s
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\environment.armeabi-v7a.s
-E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\environment.x86.s
-E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\environment.x86_64.s
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\src\android\support\compat\R.java
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\src\android\support\coordinatorlayout\R.java
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\src\android\support\customtabs\CustomTabsClient_CustomTabsCallbackImpl.java
@@ -482,24 +478,14 @@ E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\bin\packaged
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\src\com\companyname\higalaapp\R.java
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\compressed_assemblies.arm64-v8a.s
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\compressed_assemblies.armeabi-v7a.s
-E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\compressed_assemblies.x86.s
-E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\compressed_assemblies.x86_64.s
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\typemaps.arm64-v8a.o
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\typemaps.armeabi-v7a.o
-E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\typemaps.x86.o
-E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\typemaps.x86_64.o
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\environment.arm64-v8a.o
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\environment.armeabi-v7a.o
-E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\environment.x86.o
-E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\environment.x86_64.o
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\compressed_assemblies.arm64-v8a.o
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\compressed_assemblies.armeabi-v7a.o
-E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\compressed_assemblies.x86.o
-E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\compressed_assemblies.x86_64.o
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\app_shared_libraries\arm64-v8a\libxamarin-app.so
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\app_shared_libraries\armeabi-v7a\libxamarin-app.so
-E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\app_shared_libraries\x86\libxamarin-app.so
-E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\app_shared_libraries\x86_64\libxamarin-app.so
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\android\bin\classes.dex
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\stamp\_CleanIntermediateIfNeeded.stamp
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\stamp\_CompileToDalvik.stamp
@@ -522,3 +508,4 @@ E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\lp\40\jl\files.cache
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\lp\41\jl\files.cache
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\lp\43\jl\files.cache
 E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\lp\44\jl\files.cache
+E:\Mobile Projects\HigalaApp\HigalaApp.Android\obj\Debug\90\aapt_rules.txt

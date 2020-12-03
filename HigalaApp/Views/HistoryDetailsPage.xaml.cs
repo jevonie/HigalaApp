@@ -21,7 +21,6 @@ namespace HigalaApp.Views
         async void OnDismissButtonClicked(object sender, EventArgs args)
         {
             await Navigation.PopModalAsync();
-           
         }
       
     }

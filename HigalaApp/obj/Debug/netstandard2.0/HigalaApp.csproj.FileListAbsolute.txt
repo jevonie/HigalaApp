@@ -20,3 +20,4 @@ E:\Mobile Projects\HigalaApp\HigalaApp\obj\Debug\netstandard2.0\XamlC.stamp
 E:\Mobile Projects\HigalaApp\HigalaApp\obj\Debug\netstandard2.0\HigalaApp.dll
 E:\Mobile Projects\HigalaApp\HigalaApp\obj\Debug\netstandard2.0\ref\HigalaApp.dll
 E:\Mobile Projects\HigalaApp\HigalaApp\obj\Debug\netstandard2.0\HigalaApp.pdb
+E:\Mobile Projects\HigalaApp\HigalaApp\obj\Debug\netstandard2.0\HigalaApp.csprojAssemblyReference.cache

@@ -18,12 +18,38 @@ namespace HigalaApp.Views
     public partial class HistoryPage : ContentPage
     {
         RestService _restService;
+
+        DataTemplate historyListTemplate;
         public HistoryPage()
         {
             InitializeComponent();
 
             _restService = new RestService();
 
+            historyListTemplate = new DataTemplate(() =>
+            {
+
+                var lblestablishments = new Label();
+                lblestablishments.SetBinding(Label.TextProperty, "establishment_name");
+
+                var lbldate = new Label();
+                lbldate.SetBinding(Label.TextProperty, "answer_date");
+                var lbltime = new Label();
+                lbltime.SetBinding(Label.TextProperty, "answer_time");
+
+                var timestacklayout = new StackLayout
+                {
+                    Orientation = StackOrientation.Horizontal,
+                    Children = { lbldate, lbltime }
+                };
+                var finalstackLayout = new StackLayout
+                {
+                    Orientation = StackOrientation.Vertical,
+                    Padding = new Thickness(10,10),
+                    Children = { lblestablishments, timestacklayout }
+                };
+                return new ViewCell { View = finalstackLayout };
+            });
         }
         protected override async void OnAppearing()
         {
@@ -48,9 +74,9 @@ namespace HigalaApp.Views
             if (value == null)
                 return string.Empty;
 
-            var datetime = (DateTime)value;
-            datetime.ToString("MMMM dd, yyyy");
-            return value;
+            DateTime enteredDate = (DateTime)value;
+            enteredDate.ToLongDateString();
+            return enteredDate;
         }
 
         public object ConvertBack(Object value, Type targetType, object parameter, CultureInfo culture)

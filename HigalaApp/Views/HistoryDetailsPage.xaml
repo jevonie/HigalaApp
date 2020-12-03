@@ -32,7 +32,7 @@
                 <Label
                     FontAttributes="Bold"
                     FontSize="Medium"
-                    Text="{Binding created_at}" />
+                    Text="{Binding history_date}" />
 
             </StackLayout>
             <StackLayout
@@ -51,8 +51,12 @@
                 Orientation="Horizontal">
                 <Button
                     x:Name="dismissButton"
+                    BackgroundColor="#d2322d"
                     Clicked="OnDismissButtonClicked"
-                    Text="Close" />
+                    CornerRadius="5"
+                    FontAttributes="Bold"
+                    Text="Close"
+                    TextColor="#fff" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

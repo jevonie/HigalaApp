@@ -106,7 +106,7 @@ namespace HigalaApp.Models
 
         [JsonProperty("created_at")]
         public DateTime created_at { get; set; }
-
+        public DateTime history_date { get; set; }
         public int is_sync { get; set; }
 
     }

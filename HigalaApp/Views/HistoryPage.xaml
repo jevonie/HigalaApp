@@ -34,8 +34,7 @@
                                 <StackLayout Padding="10,10" Orientation="Vertical">
                                     <Label FontAttributes="Bold" Text="{Binding establishment_name}" />
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding answer_date, StringFormat='{0:MMMM dd, yyyy}'}" />
-                                        <Label Text="{Binding answer_time, StringFormat='{0:h:mm tt}'}" />
+                                        <Label Text="{Binding history_date}" />
                                     </StackLayout>
                                 </StackLayout>
                             </ViewCell>
