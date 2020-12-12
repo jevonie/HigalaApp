@@ -2,7 +2,6 @@ E:\Mobile Projects\HigalaApp\HigalaApp\bin\Release\netstandard2.0\HigalaApp.deps
 E:\Mobile Projects\HigalaApp\HigalaApp\bin\Release\netstandard2.0\HigalaApp.dll
 E:\Mobile Projects\HigalaApp\HigalaApp\bin\Release\netstandard2.0\ref\HigalaApp.dll
 E:\Mobile Projects\HigalaApp\HigalaApp\bin\Release\netstandard2.0\HigalaApp.pdb
-E:\Mobile Projects\HigalaApp\HigalaApp\obj\Release\netstandard2.0\HigalaApp.csprojAssemblyReference.cache
 E:\Mobile Projects\HigalaApp\HigalaApp\obj\Release\netstandard2.0\App.xaml.g.cs
 E:\Mobile Projects\HigalaApp\HigalaApp\obj\Release\netstandard2.0\MainPage.xaml.g.cs
 E:\Mobile Projects\HigalaApp\HigalaApp\obj\Release\netstandard2.0\Views\HistoryDetailsPage.xaml.g.cs

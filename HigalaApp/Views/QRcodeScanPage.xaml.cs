@@ -10,6 +10,7 @@ using Xamarin.Forms.Xaml;
 using HigalaApp.Services;
 using System.Diagnostics;
 using Xamarin.Essentials;
+using ZXing.Net.Mobile.Forms;
 
 namespace HigalaApp.Views
 {
@@ -18,10 +19,80 @@ namespace HigalaApp.Views
     {
         RestService _restService;
         private bool _isScanning = true;
+        DataServices _dataService;
+        ZXingScannerView zxing;
+        ZXingDefaultOverlay overlay;
         public QRcodeScanPage()
         {
             InitializeComponent();
             _restService = new RestService();
+            _dataService = new DataServices();
+
+        }
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+          
+            var status = await Permissions.CheckStatusAsync<Permissions.Camera>();
+            if (status == PermissionStatus.Granted)
+            {
+                InitiateScanner();
+            }
+            else 
+            { 
+                status = await Permissions.RequestAsync<Permissions.Camera>();
+                await Task.Delay(1000);
+                Debug.WriteLine("\tCAMERA {0}", status);
+                if (status == PermissionStatus.Granted)
+                {
+                    InitiateScanner();
+                }
+            }
+            if (status == PermissionStatus.Denied && DeviceInfo.Platform == DevicePlatform.iOS)
+            {
+                Debug.WriteLine("\tCAMERA DENIED {0}", status);
+            }
+          
+
+        }
+
+        private void InitiateScanner()
+        {
+            zxing = new ZXingScannerView
+            {
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                VerticalOptions = LayoutOptions.FillAndExpand,
+                AutomationId = "zxingScannerView",
+            };
+            zxing.OnScanResult += OnScanResult;
+            overlay = new ZXingDefaultOverlay
+            {
+                TopText = "Hold your phone up to the qrcode",
+                BottomText = "Scanning will happen automatically",
+                ShowFlashButton = zxing.HasTorch,
+                AutomationId = "zxingDefaultOverlay",
+            };
+            overlay.FlashButtonClicked += (sender, e) => {
+                zxing.IsTorchOn = !zxing.IsTorchOn;
+            };
+            
+            zxing.IsScanning = true;
+            zxing.IsAnalyzing = true;
+            _isScanning = true;
+
+            var grid = new Grid
+            {
+                VerticalOptions = LayoutOptions.FillAndExpand,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+            };
+            grid.Children.Add(zxing);
+            grid.Children.Add(overlay);
+
+            // The root page of your application
+            Content = grid;
+
+           
         }
         private void OnScanResult(ZXing.Result result)
         {
@@ -31,7 +102,6 @@ namespace HigalaApp.Views
                 if (_isScanning)
                 {
                     _isScanning = false;
-
                     ai.IsRunning = true;
                     aiLayout.IsVisible = true;
 
@@ -41,19 +111,44 @@ namespace HigalaApp.Views
 
                     if (establishment != null)
                     {
-                        Debug.WriteLine("\tTIBONG {0}", "Using Pure Equals Establishment search");
-                        OpenScanDetails(establishment);
+                        bool answer = await DisplayAlert(establishment.establishment_name, "Higala QR Code detected, Continue?", "Yes", "No");
+                        Debug.WriteLine("Answer: " + answer);
+                        if (answer)
+                        {
+                            Debug.WriteLine("\tTIBONG {0}", "Using Pure Equals Establishment search");
+                            OpenScanDetails(establishment);
+                        }
+                        else
+                        {
+                            _isScanning = true;
+                            aiLayout.IsVisible = false;
+                            ai.IsRunning = false;
+                        }
+
                     }
                     else
                     {
 
                         List<EstablishmentOnline> establishmentlist = await App.Database.GetEstablismentSearchAsync(result.Text);
+
                         if (establishmentlist != null)
                         {
+
                             foreach (EstablishmentOnline establishmentitem in establishmentlist)
                             {
-                                Debug.WriteLine("\tTIBONG {0}", "Using Simple Like Equals Establishment search");
-                                OpenScanDetails(establishmentitem);
+                                bool answer = await DisplayAlert(establishmentitem.establishment_name, "Higala QR Code detected, Continue?", "Yes", "No");
+                                Debug.WriteLine("Answer: " + answer);
+                                if (answer)
+                                {
+                                    Debug.WriteLine("\tTIBONG {0}", "Using Simple Like Equals Establishment search");
+                                    OpenScanDetails(establishmentitem);
+                                }
+                                else
+                                {
+                                    _isScanning = true;
+                                    aiLayout.IsVisible = false;
+                                    ai.IsRunning = false;
+                                }
                             }
                         }
                         else
@@ -85,10 +180,10 @@ namespace HigalaApp.Views
             question.history_date = DateTime.Now;
             question.entity = establishment.has_questions;
             question.is_sync = 0;
-           
+
             Debug.WriteLine("\tTIBONG {0}", "Done Setting");
             await App.Database.SaveScannedItemsAsync(question);
-            App.FormID = question.ID;
+            App.FormID = question.question_form_id;
 
             if (establishment.has_questions != "1")
             {
@@ -96,7 +191,6 @@ namespace HigalaApp.Views
                 detailPage.Disappearing += (sender2, e2) =>
                 {
                     _isScanning = true;
-
                 };
                 detailPage.BindingContext = question;
                 aiLayout.IsVisible = false;
@@ -114,7 +208,7 @@ namespace HigalaApp.Views
                     answermodel.question = reference.question;
                     answermodel.question_form_id = question.question_form_id;
                     var item = await App.Database.SaveQuestionsAnswerAsync(answermodel);
-                   
+
                 }
 
                 List<QuestionsAnswerOnline> questionlist = await App.Database.GetQuestionsAnswerAsync(question.question_form_id);
@@ -122,7 +216,7 @@ namespace HigalaApp.Views
                 var questionPage = new QuestionPage();
                 questionPage.BindingContext = questionlist;
 
-                Debug.WriteLine("\tJOINITEMS {0}", questionsitems);
+                Debug.WriteLine("\tJOINITEMS {0}", questionlist);
                 questionPage.Disappearing += (sender2, e2) =>
                 {
                     _isScanning = true;
@@ -131,6 +225,20 @@ namespace HigalaApp.Views
                 ai.IsRunning = false;
                 await Navigation.PushAsync(questionPage);
             }
+        }
+
+        protected override async void OnDisappearing()
+        {
+            _isScanning = false;
+
+            var status = await Permissions.CheckStatusAsync<Permissions.Camera>();
+            if (status == PermissionStatus.Granted)
+            {
+                zxing.IsScanning = false;
+                zxing.IsAnalyzing = false;
+               
+            }
+            base.OnDisappearing();
         }
     }
 }

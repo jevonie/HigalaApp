@@ -13,14 +13,14 @@ namespace HigalaApp
         public static string UserID { get; set; }
         public static string CustomerName { get; set; }
         public static string QrCode { get; set; }
-        public static int FormID { get; set; }
+        public static string FormID { get; set; }
         public static Database Database
         {
             get
             {
                 if (database == null)
                 {
-                    database = new Database(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "HigalaAppv1.db3"));
+                    database = new Database(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "HigalaAppv2.db3"));
 
                 }
                 return database;

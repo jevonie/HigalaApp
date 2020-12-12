@@ -35,6 +35,8 @@ namespace HigalaApp.Views
         public List<string> selectedItems;
         public ListView listView { get; set; }
 
+        private bool isSaveDate = false;
+
         CustomViewModel customerview = new CustomViewModel();
         public List<QuestionsAnswerOnline> QuestionsAnswerOnline
         {
@@ -54,7 +56,7 @@ namespace HigalaApp.Views
         {
             InitializeComponent();
             Device.SetFlags(new string[] { "RadioButton_Experimental" });
-
+          
             //YES NO ENTRY
             Debug.WriteLine("\tTIBONG saging saging saging {0}", "Calling initiate");
             yesnoEntryYesDataTemplate = new DataTemplate(() =>
@@ -399,6 +401,17 @@ namespace HigalaApp.Views
             listView.ItemTapped += itemtapped;
            Content = listView;
         }
+        protected override async void OnDisappearing()
+        {
+            if(isSaveDate == false)
+            {
+                var form = await App.Database.DeleteQuestionsFormByIDAsync(App.FormID);
+                Debug.WriteLine("Delete Form result=>" + form);
+                var anwers = await App.Database.DeleteQuestionsAnswerByIDAsync(App.FormID);
+                Debug.WriteLine("Delete Answers result=>" + anwers);
+            }
+            base.OnDisappearing();
+        }
         private void itemtapped(object sender, ItemTappedEventArgs e)
         {
             var selectedItem = (ListView)sender;
@@ -432,11 +445,11 @@ namespace HigalaApp.Views
                     await App.Database.SaveQuestionsAnswerAsync(item);
                     Debug.WriteLine("ID:" + item.ID + "| " + item.question_answer + " --> " + item.question_text, "QUESTION ANSWER");
                 }
-
+                isSaveDate = true;
                 QuestionFormOnline questionform = await App.Database.GetQuestionsFormByIDAsync(App.FormID);
                 var detailPage = new HistoryDetailsPage();
                 detailPage.BindingContext = questionform;
-
+                
                 await Navigation.PushModalAsync(detailPage);
                 await Navigation.PopAsync();
             }

@@ -135,8 +135,10 @@ namespace HigalaApp.Data
 
         public Task<List<QuestionFormOnline>> GetQuestionsAsync(string customerid)
         {
+            DateTime last30days = DateTime.Now.AddDays(-30);
+
             return _database.Table<QuestionFormOnline>()
-                            .Where(i => i.customer_id == customerid)
+                            .Where(i => i.customer_id == customerid && i.created_at >= last30days)
                             .OrderByDescending(i => i.created_at)
                             .ToListAsync();
         }
@@ -155,10 +157,10 @@ namespace HigalaApp.Data
                             .ToListAsync();
         }
 
-        public Task<QuestionFormOnline> GetQuestionsFormByIDAsync(int id)
+        public Task<QuestionFormOnline> GetQuestionsFormByIDAsync(string question_form_id)
         {
             return _database.Table<QuestionFormOnline>()
-                            .Where(i => i.ID == id)
+                            .Where(i => i.question_form_id == question_form_id)
                             .FirstOrDefaultAsync();
         }
 
@@ -175,7 +177,14 @@ namespace HigalaApp.Data
             }
 
         }
+            
 
+        public Task<int> DeleteQuestionsFormByIDAsync(string question_form_id)
+        {
+            return _database.Table<QuestionFormOnline>()
+                            .Where(i => i.question_form_id == question_form_id)
+                            .DeleteAsync();
+        }
 
         //Establishment
 
@@ -265,6 +274,13 @@ namespace HigalaApp.Data
         public Task<List<QuestionsAnswerOnline>> GetAllQuestionsAnswerAsync()
         {
             return _database.Table<QuestionsAnswerOnline>().ToListAsync();
+        }
+
+        public Task<int> DeleteQuestionsAnswerByIDAsync(string question_form_id)
+        {
+            return _database.Table<QuestionsAnswerOnline>()
+                            .Where(i => i.question_form_id == question_form_id)
+                            .DeleteAsync();
         }
 
         //Question and answer

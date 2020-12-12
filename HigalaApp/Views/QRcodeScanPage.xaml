@@ -6,25 +6,7 @@
     xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
     Title="Scan QRCode">
     <ContentPage.Content>
-        <AbsoluteLayout>
-            <StackLayout
-                Padding="50,0,50,0"
-                AbsoluteLayout.LayoutBounds="0,0,1,1"
-                AbsoluteLayout.LayoutFlags="All"
-                Spacing="20"
-                VerticalOptions="CenterAndExpand">
-                <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                    <zxing:ZXingScannerView
-                        x:Name="scanView"
-                        HeightRequest="400"
-                        HorizontalOptions="Fill"
-                        IsScanning="True"
-                        OnScanResult="OnScanResult"
-                        VerticalOptions="Fill"
-                        WidthRequest="300" />
-                    <zxing:ZXingDefaultOverlay TopText="Align the QRCode within the frame" />
-                </Grid>
-            </StackLayout>
+        <AbsoluteLayout x:Name="mainlayout">
             <StackLayout
                 x:Name="aiLayout"
                 AbsoluteLayout.LayoutBounds="0,0,1,1"

@@ -241,6 +241,28 @@ namespace HigalaApp.Services
 
             return questionsFromOnline;
         }
+        public async Task<AppVersionOnline> GetAppItemVersion(string uri)
+        {
+            AppVersionOnline establishment = null;
+            Debug.WriteLine("\tDATA {0}", uri);
+            try
+            {
+                HttpResponseMessage response = await _client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    Debug.WriteLine("\tDATA {0}", content);
+                    establishment = JsonConvert.DeserializeObject<AppVersionOnline>(content);
+                }
+                Debug.WriteLine("\tINFO {0}", "failed remote");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("\tINFO {0}", ex.Message);
+            }
+
+            return establishment;
+        }
 
     }
 }

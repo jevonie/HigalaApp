@@ -93,6 +93,15 @@
                                 TextColor="White" />
 
                         </StackLayout>
+                        <StackLayout Padding="0,10,0,0" Spacing="10">
+                            <Label
+                                x:Name="lblversion"
+                                FontSize="10"
+                                HorizontalOptions="CenterAndExpand"
+                                Text="Higala App BETA: v1.2"
+                                TextColor="Black"
+                                VerticalOptions="CenterAndExpand" />
+                        </StackLayout>
                     </StackLayout>
                 </StackLayout>
 

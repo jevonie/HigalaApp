@@ -19,6 +19,9 @@
     <None Remove="Views\Image\checked.png" />
     <None Remove="Views\Image\goldencdo.png" />
     <None Remove="Views\Image\higala.png" />
+    <None Remove="Views\Image\HigalaCdo.png" />
+    <None Remove="Views\Image\HigalaNew.png" />
+    <None Remove="Views\Image\logo.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +31,9 @@
     <EmbeddedResource Include="Views\Image\checked.png" />
     <EmbeddedResource Include="Views\Image\goldencdo.png" />
     <EmbeddedResource Include="Views\Image\higala.png" />
+    <EmbeddedResource Include="Views\Image\HigalaCdo.png" />
+    <EmbeddedResource Include="Views\Image\HigalaNew.png" />
+    <EmbeddedResource Include="Views\Image\logo.png" />
   </ItemGroup>
 
   <ItemGroup>

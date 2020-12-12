@@ -23,8 +23,8 @@
 	.section	.rodata.env.str.1,"aMS",%progbits,1
 	.type	.L.env.str.1, %object
 .L.env.str.1:
-	.asciz	"com.companyname.higalaapp"
-	.size	.L.env.str.1, 26
+	.asciz	"com.lgucdo.higalaapp"
+	.size	.L.env.str.1, 21
 	.section	.data.application_config,"aw",%progbits
 	.type	application_config, %object
 	.p2align	2
@@ -67,23 +67,23 @@ mono_aot_mode_name:
 	.section	.rodata.env.str.3,"aMS",%progbits,1
 	.type	.L.env.str.3, %object
 .L.env.str.3:
-	.asciz	"MONO_DEBUG"
-	.size	.L.env.str.3, 11
+	.asciz	"MONO_GC_PARAMS"
+	.size	.L.env.str.3, 15
 	.section	.rodata.env.str.4,"aMS",%progbits,1
 	.type	.L.env.str.4, %object
 .L.env.str.4:
-	.asciz	"gen-compact-seq-points"
-	.size	.L.env.str.4, 23
+	.asciz	"major=marksweep-conc"
+	.size	.L.env.str.4, 21
 	.section	.rodata.env.str.5,"aMS",%progbits,1
 	.type	.L.env.str.5, %object
 .L.env.str.5:
-	.asciz	"MONO_GC_PARAMS"
+	.asciz	"MONO_LOG_LEVEL"
 	.size	.L.env.str.5, 15
 	.section	.rodata.env.str.6,"aMS",%progbits,1
 	.type	.L.env.str.6, %object
 .L.env.str.6:
-	.asciz	"major=marksweep-conc"
-	.size	.L.env.str.6, 21
+	.asciz	"info"
+	.size	.L.env.str.6, 5
 	.section	.rodata.env.str.7,"aMS",%progbits,1
 	.type	.L.env.str.7, %object
 .L.env.str.7:
@@ -92,7 +92,7 @@ mono_aot_mode_name:
 	.section	.rodata.env.str.8,"aMS",%progbits,1
 	.type	.L.env.str.8, %object
 .L.env.str.8:
-	.asciz	"84fc138b-0149-47ed-a383-af31707d8e46"
+	.asciz	"7ea67986-d1a6-4092-940e-722293fc4ede"
 	.size	.L.env.str.8, 37
 	.section	.rodata.env.str.9,"aMS",%progbits,1
 	.type	.L.env.str.9, %object

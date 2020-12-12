@@ -21,7 +21,7 @@ namespace HigalaApp.Views
         {
             base.OnAppearing();
             var user = await App.Database.GetCustomerByIDAsync(App.UserID);
-            txtFullName.Text = user.customer_firstname + " " + user.customer_middlename + " " + user.customer_lastname;
+            txtFullName.Text = user.customer_firstname + " " + user.customer_middlename + " " + user.customer_lastname + " " + user.customer_extension;
             txtContactNo.Text = user.customer_contact;
             txtEmail.Text = user.customer_email;
             

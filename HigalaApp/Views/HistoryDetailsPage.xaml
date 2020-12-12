@@ -10,46 +10,49 @@
         </OnPlatform>
     </ContentPage.Padding>
     <ContentPage.Content>
-        <StackLayout
+        <ScrollView>
+            <StackLayout
             Padding="10"
             BackgroundColor="#ffff"
             HorizontalOptions="Center"
             VerticalOptions="Center">
-            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-                <Image x:Name="checkedImg" />
-            </StackLayout>
-            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-                <Label
+                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                    <Image x:Name="checkedImg" 
+                       HorizontalOptions="CenterAndExpand" 
+                       VerticalOptions="CenterAndExpand" />
+                </StackLayout>
+                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                    <Label
                     FontAttributes="Bold"
                     FontSize="20"
                     HorizontalTextAlignment="Center"
                     Text="{Binding establishment_name}" />
-            </StackLayout>
-            <StackLayout
+                </StackLayout>
+                <StackLayout
                 Padding="0,20,0,20"
                 HorizontalOptions="Center"
                 Orientation="Horizontal">
-                <Label
+                    <Label
                     FontAttributes="Bold"
                     FontSize="Medium"
                     Text="{Binding history_date}" />
 
-            </StackLayout>
-            <StackLayout
+                </StackLayout>
+                <StackLayout
                 Padding="0,0,0,20"
                 HorizontalOptions="Center"
                 Orientation="Horizontal">
-                <Label
+                    <Label
                     x:Name="CustomerName"
                     FontAttributes="Bold"
                     FontSize="Medium"
                     Text="asdasdasdasd" />
-            </StackLayout>
-            <StackLayout
+                </StackLayout>
+                <StackLayout
                 Padding="0,0,0,20"
                 HorizontalOptions="Center"
                 Orientation="Horizontal">
-                <Button
+                    <Button
                     x:Name="dismissButton"
                     BackgroundColor="#d2322d"
                     Clicked="OnDismissButtonClicked"
@@ -57,7 +60,8 @@
                     FontAttributes="Bold"
                     Text="Close"
                     TextColor="#fff" />
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

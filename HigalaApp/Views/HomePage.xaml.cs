@@ -25,10 +25,11 @@ namespace HigalaApp.Views
             HeaderCdoimg.Source = ImageSource.FromResource("HigalaApp.Views.Image.cdo.png");
             HeaderGoldenimg.Source = ImageSource.FromResource("HigalaApp.Views.Image.goldencdo.png");
             Title = "Higala App";
+            lblversion.Text = "Higala App BETA: v"+ConstantData.AppVersion;
             _dataService = new DataServices();
 
         }
-        protected override async void OnAppearing()
+        protected override  void OnAppearing()
         {
             base.OnAppearing();
             lblTitle.Text = App.CustomerName.ToUpper();

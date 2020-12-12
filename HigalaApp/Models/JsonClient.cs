@@ -43,6 +43,9 @@ namespace HigalaApp.Models
         [JsonProperty("customer_lastname")]
         public string customer_lastname { get; set; }
 
+        [JsonProperty("customer_extension")]
+        public string customer_extension { get; set; }
+
         [JsonProperty("customer_contact")]
         public string customer_contact { get; set; }
 
@@ -182,6 +185,14 @@ namespace HigalaApp.Models
         public string question_text { get; set; }
 
 
+    }
+    public class AppVersionOnline
+    {
+        [JsonProperty("version_id")]
+        public int version_id { get; set; }
+
+        [JsonProperty("version_no")]
+        public string version_no { get; set; }
     }
 }
 

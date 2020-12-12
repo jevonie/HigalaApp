@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Mobile Projects\\HigalaApp\\HigalaApp.iOS\\HigalaApp.iOS.csproj": {}
+    "D:\\Mobile Projects\\HigalaApp\\HigalaApp.iOS\\HigalaApp.iOS.csproj": {}
   },
   "projects": {
-    "E:\\Mobile Projects\\HigalaApp\\HigalaApp.iOS\\HigalaApp.iOS.csproj": {
+    "D:\\Mobile Projects\\HigalaApp\\HigalaApp.iOS\\HigalaApp.iOS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Mobile Projects\\HigalaApp\\HigalaApp.iOS\\HigalaApp.iOS.csproj",
+        "projectUniqueName": "D:\\Mobile Projects\\HigalaApp\\HigalaApp.iOS\\HigalaApp.iOS.csproj",
         "projectName": "HigalaApp.iOS",
-        "projectPath": "E:\\Mobile Projects\\HigalaApp\\HigalaApp.iOS\\HigalaApp.iOS.csproj",
-        "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
-        "outputPath": "E:\\Mobile Projects\\HigalaApp\\HigalaApp.iOS\\obj\\",
+        "projectPath": "D:\\Mobile Projects\\HigalaApp\\HigalaApp.iOS\\HigalaApp.iOS.csproj",
+        "packagesPath": "C:\\Users\\tibong\\.nuget\\packages\\",
+        "outputPath": "D:\\Mobile Projects\\HigalaApp\\HigalaApp.iOS\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tibong\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -32,8 +32,8 @@
         "frameworks": {
           "xamarinios10": {
             "projectReferences": {
-              "E:\\Mobile Projects\\HigalaApp\\HigalaApp\\HigalaApp.csproj": {
-                "projectPath": "E:\\Mobile Projects\\HigalaApp\\HigalaApp\\HigalaApp.csproj"
+              "D:\\Mobile Projects\\HigalaApp\\HigalaApp\\HigalaApp.csproj": {
+                "projectPath": "D:\\Mobile Projects\\HigalaApp\\HigalaApp\\HigalaApp.csproj"
               }
             }
           }
@@ -65,20 +65,20 @@
         }
       }
     },
-    "E:\\Mobile Projects\\HigalaApp\\HigalaApp\\HigalaApp.csproj": {
+    "D:\\Mobile Projects\\HigalaApp\\HigalaApp\\HigalaApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Mobile Projects\\HigalaApp\\HigalaApp\\HigalaApp.csproj",
+        "projectUniqueName": "D:\\Mobile Projects\\HigalaApp\\HigalaApp\\HigalaApp.csproj",
         "projectName": "HigalaApp",
-        "projectPath": "E:\\Mobile Projects\\HigalaApp\\HigalaApp\\HigalaApp.csproj",
-        "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
-        "outputPath": "E:\\Mobile Projects\\HigalaApp\\HigalaApp\\obj\\",
+        "projectPath": "D:\\Mobile Projects\\HigalaApp\\HigalaApp\\HigalaApp.csproj",
+        "packagesPath": "C:\\Users\\tibong\\.nuget\\packages\\",
+        "outputPath": "D:\\Mobile Projects\\HigalaApp\\HigalaApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tibong\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -150,7 +150,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

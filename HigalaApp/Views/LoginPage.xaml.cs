@@ -24,13 +24,14 @@ namespace HigalaApp.Views
             InitializeComponent();
             _restService = new RestService();
             _dataService = new DataServices();
+           
         }
         protected override void OnAppearing()
         {
             base.OnAppearing();
             BackgroundImageSource = ImageSource.FromResource("HigalaApp.Views.Image.background.jpg");
-       
-            higalalogo.Source = ImageSource.FromResource("HigalaApp.Views.Image.higala.png");
+            higalalogo.Source = ImageSource.FromResource("HigalaApp.Views.Image.HigalaNew.png");
+            CheckAppVersion();
         }
         async void OnLoginClick(object sender, EventArgs e)
         {
@@ -97,7 +98,7 @@ namespace HigalaApp.Views
                         if (userDetails != null)
                         {
                             App.UserID = userDetails.customer_id;
-                            App.CustomerName = userDetails.customer_firstname + " " + userDetails.customer_lastname;
+                            App.CustomerName = userDetails.customer_firstname + " " + userDetails.customer_lastname + " " + userDetails.customer_extension;
                             App.QrCode = userDetails.QrCombination;
                             Debug.WriteLine("\tQR_CODE {0}", userDetails.QrCombination);
                             CheckLocalData();
@@ -111,7 +112,7 @@ namespace HigalaApp.Views
 
                     }
                     else
-                    {   
+                    {
                         await DisplayAlert("Login Failed", "Username/Password incorrect", "ok");
                         aiLayout.IsVisible = false;
                         ai.IsRunning = false;
@@ -128,10 +129,10 @@ namespace HigalaApp.Views
                         ClientLoginOnline login = await _restService.GetClientDataAsync(GenerateRequestUri(ConstantData.HigalaApi + "logincustomer", username_Input.Trim(), password_Input.Trim()));
                         if (login != null)
                         {
-                            
+
                             Debug.WriteLine("\tINFOR {0}", "login using remote");
                             ClientLoginOnline loginuser = await App.Database.GetUserByCustomerIDAsync(login.customer_id);
-                            if(loginuser != null)
+                            if (loginuser != null)
                             {
                                 loginuser.customer_username = username_Input.Trim();
                                 loginuser.Passwords = utility.getEncodeString(password_Input.Trim());
@@ -165,7 +166,7 @@ namespace HigalaApp.Views
                                 }
 
                                 App.UserID = customerdata.customer_id;
-                                App.CustomerName = customerdata.customer_firstname + " " + customerdata.customer_lastname;
+                                App.CustomerName = customerdata.customer_firstname + " " + customerdata.customer_lastname + " " + customerdata.customer_extension;
                                 App.QrCode = customerdata.QrCombination;
                                 CheckLocalData();
                             }
@@ -212,7 +213,29 @@ namespace HigalaApp.Views
             }
 
         }
-        public  async void updateEstalishment()
+        public async void CheckAppVersion()
+        {
+            var current = Connectivity.NetworkAccess;
+            if (current == NetworkAccess.Internet)
+            {
+                AppVersionOnline appversion = await _restService.GetAppItemVersion(ConstantData.HigalaApi + "getversion/" + ConstantData.AppVersion);
+                if (appversion == null)
+                {
+                    bool answer = await DisplayAlert("Youre Higala App is outdated!", "Download new version?", "Yes", "No");
+                    Debug.WriteLine("Answer: " + answer);
+                    if (answer)
+                    {
+                        var uri = new Uri(ConstantData.ApkUrl);
+                        await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
+                    }
+                }
+                else
+                {
+                    Debug.WriteLine("Updated");
+                }
+            }
+        }
+        public async void updateEstalishment()
         {
             var current = Connectivity.NetworkAccess;
             if (current == NetworkAccess.Internet)
@@ -223,7 +246,8 @@ namespace HigalaApp.Views
                     await _dataService.SyncQuestions();
                     await _dataService.DowloadEstablishments();
                     await _dataService.DowloadQuestionHistory();
-                }catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
                     Debug.WriteLine("\t" + ex, "Error on Synching Login items!!");
                 }

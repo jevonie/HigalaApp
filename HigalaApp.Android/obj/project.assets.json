@@ -2360,24 +2360,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\asus\\.nuget\\packages\\": {},
+    "C:\\Users\\tibong\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Mobile Projects\\HigalaApp\\HigalaApp.Android\\HigalaApp.Android.csproj",
+      "projectUniqueName": "D:\\Mobile Projects\\HigalaApp\\HigalaApp.Android\\HigalaApp.Android.csproj",
       "projectName": "HigalaApp.Android",
-      "projectPath": "E:\\Mobile Projects\\HigalaApp\\HigalaApp.Android\\HigalaApp.Android.csproj",
-      "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
-      "outputPath": "E:\\Mobile Projects\\HigalaApp\\HigalaApp.Android\\obj\\",
+      "projectPath": "D:\\Mobile Projects\\HigalaApp\\HigalaApp.Android\\HigalaApp.Android.csproj",
+      "packagesPath": "C:\\Users\\tibong\\.nuget\\packages\\",
+      "outputPath": "D:\\Mobile Projects\\HigalaApp\\HigalaApp.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\tibong\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -2391,8 +2391,8 @@
       "frameworks": {
         "monoandroid90": {
           "projectReferences": {
-            "E:\\Mobile Projects\\HigalaApp\\HigalaApp\\HigalaApp.csproj": {
-              "projectPath": "E:\\Mobile Projects\\HigalaApp\\HigalaApp\\HigalaApp.csproj"
+            "D:\\Mobile Projects\\HigalaApp\\HigalaApp\\HigalaApp.csproj": {
+              "projectPath": "D:\\Mobile Projects\\HigalaApp\\HigalaApp\\HigalaApp.csproj"
             }
           }
         }
